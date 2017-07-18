@@ -4,14 +4,12 @@ from ._builtin import Page, WaitPage
 from .models import Constants
 
 
-class MyPage(Page):
+class InitialInvestment(Page):
+    form_model = models.Player
+    form_fields = ['first_decision']
+
+class FinalInvestment(Page):
     pass
-
-
-class ResultsWaitPage(WaitPage):
-
-    def after_all_players_arrive(self):
-        pass
 
 
 class Results(Page):
@@ -19,7 +17,7 @@ class Results(Page):
 
 
 page_sequence = [
-    MyPage,
-    ResultsWaitPage,
+    InitialInvestment,
+    FinalInvestment,
     Results
 ]

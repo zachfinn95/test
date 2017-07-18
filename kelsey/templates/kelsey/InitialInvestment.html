@@ -2,10 +2,13 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-     Results
+    Initial Investment
 {% endblock %}
 
 {% block content %}
+{% formfield player.first_decision with label=Constants.first_decision_labels.T2 %}
+
 
     {% next_button %}
+
 {% endblock %}

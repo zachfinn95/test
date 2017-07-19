@@ -3,8 +3,10 @@ from . import models
 from ._builtin import Page, WaitPage
 from .models import Constants
 
-def MyPage(Page):
+class MyPage(Page):
     timeout_seconds = 60
+
+    
 def vars_for_all_templates(self):
     p_1 = 1 - Constants.p
     return {'p_1': p_1}

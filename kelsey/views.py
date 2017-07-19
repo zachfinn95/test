@@ -3,7 +3,8 @@ from . import models
 from ._builtin import Page, WaitPage
 from .models import Constants
 
-
+def MyPage(Page):
+    timeout_seconds = 60
 def vars_for_all_templates(self):
     p_1 = 1 - Constants.p
     return {'p_1': p_1}
@@ -14,7 +15,7 @@ def what_to_highlight(p):
         'highlighted_high': p.investment_payoff == p.high_payoff,
         'highlighted_low': p.investment_payoff == p.low_payoff,
     })
-class InitialInvestment(Page):
+class InitialInvestment(MyPage):
     form_model = models.Player
     form_fields = ['first_decision']
     def vars_for_template(self):
@@ -23,7 +24,7 @@ class InitialInvestment(Page):
             'first_decision_label': curlab,
         }
 
-class FinalInvestment(Page):
+class FinalInvestment(MyPage):
     form_model = models.Player
     form_fields = ['second_decision']
     def is_displayed(self):
@@ -32,7 +33,7 @@ class FinalInvestment(Page):
         return what_to_highlight(self.player)
 
 
-class Results(Page):
+class Results(MyPage):
     def is_displayed(self):
         self.player.set_payoffs()
         return True

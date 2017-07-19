@@ -19,6 +19,7 @@ class Constants(BaseConstants):
     # till what round we play T0 and then change to whatever treatment
     # we have?::
     first_half = 9
+    assert first_half <= num_rounds, "SOMETHING WRONG WITH NUMBER OF ROUNDS!"
     p = 0.3
     initial_cost = 9
     final_cost = 15

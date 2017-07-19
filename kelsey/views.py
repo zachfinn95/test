@@ -6,7 +6,7 @@ from .models import Constants
 class MyPage(Page):
     timeout_seconds = 60
 
-    
+
 def vars_for_all_templates(self):
     p_1 = 1 - Constants.p
     return {'p_1': p_1}
@@ -17,6 +17,13 @@ def what_to_highlight(p):
         'highlighted_high': p.investment_payoff == p.high_payoff,
         'highlighted_low': p.investment_payoff == p.low_payoff,
     })
+
+
+class Part2(MyPage):
+    def is_displayed(self):
+        return self.round_number == Constants.first_half + 1
+
+
 class InitialInvestment(MyPage):
     form_model = models.Player
     form_fields = ['first_decision']
@@ -44,6 +51,7 @@ class Results(MyPage):
             return what_to_highlight(self.player)
 
 page_sequence = [
+    Part2,
     InitialInvestment,
     FinalInvestment,
     # WP,

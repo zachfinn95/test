@@ -6,8 +6,13 @@
 {% endblock %}
 
 {% block content %}
+{% include 'kelsey/InfoBlock.html' %}
+<div class='well'>
 
+  The random number generator has determined that the payoff for this investment is <b>${{player.investment_payoff}}</b>.
 
+</div>
+{{form}}
 
     {% next_button %}
 

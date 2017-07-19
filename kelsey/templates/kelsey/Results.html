@@ -6,6 +6,14 @@
 {% endblock %}
 
 {% block content %}
+{% include 'kelsey/InfoBlock.html' %}
+<div class='well'>
 
+  The random number generator has determined that the payoff for this investment is <b>${{player.investment_payoff}}</b>.
+
+</div>
+<div>You chose to make an initial investment: {{player.first_decision|yesno:'YES, NO'}}</div>
+<div>Your investment payoff was: {{player.investment_payoff}}</div>
+<div>Your earnings in this round: {{player.payoff}}</div>
     {% next_button %}
 {% endblock %}

@@ -6,14 +6,38 @@
 {% endblock %}
 
 {% block content %}
-{% include 'kelsey/InfoBlock.html' %}
-<div class='well'>
 
-  The random number generator has determined that the payoff for this investment is <b>${{player.investment_payoff}}</b>.
+{% include 'kelsey/InfoBlock.html'   %}
+{% include 'kelsey/investment_payoff_result.html' %}
+<table class="table table-hover table-striped">
+  <tbody>
+<tr>
+  <td>You chose to make an initial investment: </td>
+  <td>{{player.first_decision|yesno:'Yes, No'}}</td>
+</tr>
+{% if player.treatment == 'T1' and player.first_decision %}
+<tr>
+  <td>You chose to pay the final investment cost of {{Constants.final_cost}} to release this payoff:</td>
+  <td>{{player.second_decision|yesno:'Yes, No'}}</td>
+</tr>
+{% endif %}
 
-</div>
-<div>You chose to make an initial investment: {{player.first_decision|yesno:'YES, NO'}}</div>
-<div>Your investment payoff was: {{player.investment_payoff}}</div>
-<div>Your earnings in this round: {{player.payoff}}</div>
+{% if player.first_decision %}
+<tr>
+
+  <td>Your investment payoff was:</td>
+  <td>{{player.investment_payoff}}</td>
+</tr>
+{% endif %}
+
+<tr>
+  <td>Your earnings in this round: </td>
+  <td>{{player.payoff}}</td>
+</tr>
+
+
+</tbody>
+</table>
+
     {% next_button %}
 {% endblock %}

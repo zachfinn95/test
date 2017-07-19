@@ -1,13 +1,47 @@
 
 {% load staticfiles otree_tags %}
 
+
 <div class='well'>
 
-  <div>Initial investment cost:: {{Constants.initial_cost}}</div>
-  <div>Low investment payoff:: {{player.low_payoff}}</div>
-  <div>probability of low investment payoff:: {{Constants.p}}</div>
-  <div>High Inverstment payoff:: {{player.high_payoff}}</div>
-  <div>probability of high investment payoff:: {{p_1}} </div>
-  <div>Final investment cost:: {{    Constants.final_cost}}</div>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading"><h3>Contract elements:</h3></div>
+
+
+  <table class="table table-hover table-striped">
+    <tbody>
+  <tr>
+    <td>Initial investment cost:</td>
+    <td><span class="badge">{{Constants.initial_cost}}</td>
+  </tr>
+  <tr {% if highlighted_low %} class="highlighted" {% endif %}>
+    <td>Low investment payoff:</td>
+    <td><span class="badge">{{player.low_payoff}}</td>
+  </tr>
+
+
+  <tr>
+    <td>Probability of low investment payoff:</td>
+    <td><span class="badge">{{Constants.p}}</td>
+  </tr>
+
+  <tr {% if highlighted_high %} class="highlighted" {% endif %} >
+    <td >High Inverstment payoff:</td>
+    <td><span class="badge">{{player.high_payoff}}</td>
+  </tr>
+
+  <tr>
+    <td>Probability of high investment payoff:</td>
+    <td><span class="badge">{{p_1}}</td>
+  </tr>
+  <tr>
+    <td>Final investment cost:</td>
+    <td><span class="badge">{{    Constants.final_cost}}</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
 
 </div>

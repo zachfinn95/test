@@ -8,6 +8,12 @@ def vars_for_all_templates(self):
     p_1 = 1 - Constants.p
     return {'p_1': p_1}
 
+def what_to_highlight(p):
+    print('I AM IN!!')
+    return ({
+        'highlighted_high': p.investment_payoff == p.high_payoff,
+        'highlighted_low': p.investment_payoff == p.low_payoff,
+    })
 class InitialInvestment(Page):
     form_model = models.Player
     form_fields = ['first_decision']
@@ -21,14 +27,18 @@ class FinalInvestment(Page):
     form_model = models.Player
     form_fields = ['second_decision']
     def is_displayed(self):
-        return self.player.treatment == 'T1'
+        return self.player.treatment == 'T1' and self.player.first_decision
+    def vars_for_template(self):
+        return what_to_highlight(self.player)
 
 
 class Results(Page):
     def is_displayed(self):
         self.player.set_payoffs()
         return True
-
+    def vars_for_template(self):
+        if self.player.first_decision:
+            return what_to_highlight(self.player)
 
 page_sequence = [
     InitialInvestment,

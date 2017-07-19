@@ -7,11 +7,7 @@
 
 {% block content %}
 {% include 'kelsey/InfoBlock.html' %}
-<div class='well'>
-
-  The random number generator has determined that the payoff for this investment is <b>${{player.investment_payoff}}</b>.
-
-</div>
+{% include 'kelsey/investment_payoff_result.html' %}
 {{form}}
 
     {% next_button %}

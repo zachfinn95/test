@@ -86,7 +86,7 @@ class Player(BasePlayer):
             self.payoff = self.first_decision * \
                 (-Constants.initial_cost +
                  (self.investment_payoff - Constants.final_cost) *
-                    self.second_decision)
+                    (self.second_decision or 0))
         if self.treatment == 'T2':
             self.payoff = self.first_decision * \
                 (-Constants.initial_cost +

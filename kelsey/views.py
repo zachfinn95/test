@@ -9,15 +9,21 @@ class InitialInvestment(Page):
     form_fields = ['first_decision']
 
 class FinalInvestment(Page):
-    pass
+    form_model = models.Player
+    form_fields = ['second_decision']
+    def is_displayed(self):
+        return self.player.treatment == 'T1'
 
 
 class Results(Page):
-    pass
+    def is_displayed(self):
+        self.player.set_payoffs()
+        return True
 
 
 page_sequence = [
     InitialInvestment,
     FinalInvestment,
+    # WP,
     Results
 ]

@@ -112,9 +112,10 @@ SESSION_CONFIG_DEFAULTS = {
 SESSION_CONFIGS = [
     {
         'name': 'kelsey',
-        'display_name': 'kelsey',
+        'display_name': 'kelsey T0-T1',
         'num_demo_participants': 1,
         'app_sequence': ['kelsey'],
+        'second_half': 'T1'
     }
 ]
 

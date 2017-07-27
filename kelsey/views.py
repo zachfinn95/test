@@ -108,7 +108,7 @@ class Final(FirstRoundPage):
 # END OF INSTRUCTIONS AND QS BLOCK
 
 page_sequence = [
-    Q,
+    # Q,
     InitialInvestment,
     FinalInvestment,
     # WP,

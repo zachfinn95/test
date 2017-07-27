@@ -4,44 +4,95 @@
 
 <div class='well'>
 
-<div class="panel panel-default">
-  <!-- Default panel contents -->
-  <div class="panel-heading"><h3>Contract elements:</h3></div>
+
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading"><h3>Contract elements:</h3></div>
 
 
-  <table class="table table-hover table-striped">
-    <tbody>
-  <tr>
-    <td>Initial investment cost:</td>
-    <td><span class="badge">{{Constants.initial_cost}}</td>
-  </tr>
-  <tr {% if highlighted_low %} class="highlighted" {% endif %}>
-    <td>Low investment payoff:</td>
-    <td><span class="badge">{{player.low_payoff}}</td>
-  </tr>
+    <table class="table table-hover table-striped">
+      <tbody>
+    <tr>
+      <td>Initial investment cost:</td>
+      <td><span class="badge">{{Constants.initial_cost}}</td>
+    </tr>
+    <tr>
+      <th colspan=2>Inverstment payoff:</th>
 
+    </tr>
+    <tr  class='random success'>
+      <td class='{% if highlighted_low %} invalid' {% endif %}' >Low: <span class="badge">{{player.low_payoff}}</span></td>
+      <td class='{% if highlighted_low %} invalid {% endif %}probs'>Probability: <span class="badge">{{p}}%</span></td>
+    </tr>
+    <tr  class='random success'>
+      <td class='{% if highlighted_high %} invalid' {% endif %}' >High: <span class="badge">{{player.high_payoff}}</span></td>
+      <td class='{% if highlighted_high %} invalid {% endif %} probs'>Probability: <span class="badge">{{p_1}}%</span></td>
+    </tr>
 
-  <tr>
-    <td>Probability of low investment payoff:</td>
-    <td><span class="badge">{{Constants.p}}</td>
-  </tr>
+      <td>Final investment cost:</td>
+      <td><span class="badge">{{    Constants.final_cost}}</td>
+    </tr>
+    </tbody>
+  </table>
+  </div>
+{% if prob_realized %}
+  <div class="modal fade" tabindex="-1" role="dialog" id='myModal'>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Investment payoff</h4>
+        </div>
+        <div class="modal-body">
+          <p>The random number generator has determined that the payoff for this investment is <b>${{player.investment_payoff}}</b></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+{% endif %}
 
-  <tr {% if highlighted_high %} class="highlighted" {% endif %} >
-    <td >High Inverstment payoff:</td>
-    <td><span class="badge">{{player.high_payoff}}</td>
-  </tr>
-
-  <tr>
-    <td>Probability of high investment payoff:</td>
-    <td><span class="badge">{{p_1}}</td>
-  </tr>
-  <tr>
-    <td>Final investment cost:</td>
-    <td><span class="badge">{{    Constants.final_cost}}</td>
-  </tr>
-  </tbody>
-</table>
 </div>
+{% if prob_realized %}
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script>
+  $('#myModal').modal('toggle');
+  $(document).ready(function(){
+  var probs = $('.probs');
+   probs.html("");
+  });
+  </script>
 
+  <style>
+  @-webkit-keyframes invalid {
+    from { background-color: red; }
+    to { background-color: inherit; }
+  }
+  @-moz-keyframes invalid {
+    from { background-color: red; }
+    to { background-color: inherit; }
+  }
+  @-o-keyframes invalid {
+    from { background-color: red; }
+    to { background-color: inherit; }
+  }
+  @keyframes invalid {
+    from { background-color: red; }
+    to { background-color: inherit; }
+  }
+  .invalid {
+    -webkit-animation: invalid 1s infinite; /* Safari 4+ */
+    -moz-animation:    invalid 1s infinite; /* Fx 5+ */
+    -o-animation:      invalid 1s infinite; /* Opera 12+ */
+    animation:         invalid 1s infinite; /* IE 10+ */
+  }
 
-</div>
+  td {
+      padding: 1em;
+  }
+  }
+  </style>
+{% endif %}

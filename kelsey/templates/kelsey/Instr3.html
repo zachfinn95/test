@@ -1,0 +1,52 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Instructions - page 1/2
+{% endblock %}
+
+{% block content %}
+<p>In Part {% if player.treatment == 'T0' %}1{% else %}2{% endif %},
+  each round gives you a choice over an investment contract
+   with the following elements. The values associated with
+    these elements will change from round to round.
+  </p>
+<p>An initial investment cost.</p>
+
+<p>Two possible payoffs (which one you actually get will be randomly determined).</p>
+
+<p>The probabilities associated with each possible payoff.</p>
+
+<p>A final investment cost.</p>
+
+<p>After learning these elements:</p>
+{% if player.treatment == 'T0' %}
+
+  <p>You will choose whether or not to pay the initial investment cost.</p>
+  <p>If you choose the pay the cost, a random number generator will determine
+    the exact payoff according to the stated probabilities.
+    If the payoff is greater than the final investment cost,
+     then the final investment cost will be automatically charged
+      and you will earn the payoff. If the payoff is less
+       than the final investment cost, then you will not be
+        charged the final investment cost and you will not earn the payoff.
+    </p>
+{% elif player.treatment == 'T1' %}
+
+  <p>You will choose whether or not to pay the initial investment cost.</p>
+  <p>A random number generator will determine the payoff according to the stated probabilities and you will be told which payoff was determined.</p>
+  <p>You will choose whether or not to pay the final investment cost in order to release the payoff.</p>
+
+{% elif player.treatment == 'T2' %}
+   <p>You will choose whether or not to pay the both the initial and final investment costs.</p>
+  <p>If you choose the pay the costs, a random number generator
+    will determine the exact payoff according to
+     the stated probabilities. If you choose not to pay,
+      you will move on to the next contract.</p>
+  <p>The payoff will be released and the final
+     investment cost will be automatically charged.
+    </p>
+{% endif %}
+{% next_button %}
+
+{% endblock %}

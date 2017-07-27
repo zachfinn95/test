@@ -6,33 +6,50 @@
 {% endblock %}
 
 {% block content %}
+{% include 'kelsey/InfoBlock.html' %}
 
-{% include 'kelsey/InfoBlock.html'   %}
-{% include 'kelsey/investment_payoff_result.html' %}
 <table class="table table-hover table-striped">
+  <thead><tr><th colspan=3>
+    Your earnings in this round:
+  </th></tr></thead>
   <tbody>
+    {% if player.first_decision %}
 <tr>
-  <td>You chose to make an initial investment: </td>
-  <td>{{player.first_decision|yesno:'Yes, No'}}</td>
+  <td>Initial investment: </td>
+  <td>  <h5>
+    <span class="glyphicon glyphicon-minus red" aria-hidden="true"></span>
+    <span class="sr-only">Minus</span>
+  </h5></td>
+  <td>{{Constants.initial_cost}}</td>
 </tr>
-{% if player.treatment == 'T1' and player.first_decision %}
-<tr>
-  <td>You chose to pay the final investment cost of {{Constants.final_cost}} to release this payoff:</td>
-  <td>{{player.second_decision|yesno:'Yes, No'}}</td>
-</tr>
-{% endif %}
 
-{% if player.first_decision %}
+    {% if show_final_investment_block %}
 <tr>
 
-  <td>Your investment payoff was:</td>
+  <td>Investment payoff:</td>
+  <td> <h5>
+    <span class="glyphicon glyphicon-plus green" aria-hidden="true"></span>
+    <span class="sr-only">Plus</span>
+  </h5> </td>
   <td>{{player.investment_payoff}}</td>
 </tr>
+<td>Final investment: </td>
+<td>  <h5>
+  <span class="glyphicon glyphicon-minus red" aria-hidden="true"></span>
+  <span class="sr-only">Minus</span>
+</h5></td>
+<td>{{Constants.final_cost}}</td>
+</tr>
 {% endif %}
-
+{% endif %}
 <tr>
-  <td>Your earnings in this round: </td>
-  <td>{{player.payoff}}</td>
+      {% if player.first_decision %}
+  <th class='success'> </th>
+  <th class='success'> <h5>
+    =
+  </h5> </th>
+{% endif %}
+  <th class='success'>{{player.payoff}}</th>
 </tr>
 
 
@@ -40,4 +57,23 @@
 </table>
 
     {% next_button %}
+{% endblock %}
+
+{% block styles %}
+<style>
+.red{
+    color: red;
+}
+.green{
+    color: green;
+}
+
+.blue {
+    color: blue;
+}
+.table > tbody > tr > td {
+     vertical-align: middle;
+}
+</style>
+
 {% endblock %}

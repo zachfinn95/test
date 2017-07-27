@@ -1,0 +1,55 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Page title
+{% endblock %}
+
+{% block content %}
+{% if player.treatment == 'T0' %}
+  For example, imagine the elements of the contract are given by the numbers to the right.
+  You will be asked to make the following decisions:
+  Do you want to pay an initial inv. cost of $3 with the final investment cost determined based on what value payoff is drawn??
+  ☐ NO
+  X   YES 	…if you choose YES, you are then taken to a different screen with 		   	information that depends on which of the randomly determined 			 payoffs is drawn
+
+  With 50% probability, you will see the following:
+  The payoff for this investment is 15
+
+  Since the payoff of 15 is greater than the final investment cost of 6, so you will be charged the final investment cost
+
+  Your earnings from this round are: – 3 + 15 – 6 = 6
+
+{% elif player.treatment == 'T1' %}
+
+  For example, imagine the elements of the contract are given by the numbers to the right.
+  You will be asked to make the following decisions:
+  Do you want to pay an initial inv. cost of $3 to take this contract?
+  ☐ NO
+  X   YES 	…if you choose YES, you are then taken to a different screen with 		   	information that depends on which of the randomly determined 			 payoffs is drawn
+
+  With 50% probability, you will see the following:
+  The payoff for this investment is 15
+
+  You will then be asked:
+  Do you want to pay the final investment cost of $6?
+  ☐ NO 	…if you choose NO, you earn -3 in this round
+  ☐ YES 	…if you choose YES, you earn 6 = -3-6+15 in this round
+
+{% elif player.treatment == 'T2' %}
+  For example, imagine the elements of the contract are given by the numbers to the right.
+  You will be asked to make the following decisions:
+  Do you want to pay an initial inv. cost of $3 and a final inv cost of $6 to release the randomly determined payoff?
+  ☐ NO
+  X   YES 	…if you choose YES, you are then taken to a different screen with 		   	information that depends on which of the randomly determined 			 payoffs is drawn
+
+  With 50% probability, you will see the following:
+  The payoff for this investment is 15
+
+  Your earnings from this round are: 6 = – 3 + 15 – 6
+
+{% endif %}
+
+    {% next_button %}
+
+{% endblock %}

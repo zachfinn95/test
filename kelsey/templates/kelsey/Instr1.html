@@ -1,0 +1,27 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Welcome
+{% endblock %}
+
+{% block content %}
+<p>Welcome and thank you for participating in this experiment.</p>
+
+<p>You will be paid in this experiment in the following two ways:</p>
+<p>You will be paid ${{session.config.participation_fee}} for showing up</p>
+<p>You will earn money based on your choices</p>
+
+<p>Please turn off your cellphone and put away your electronic devices.</p>
+<p>The entire experiment will take place through the computer terminals. Please do not communicate with other participants in the study.</p>
+
+<p>When you are finished with the page of instructions, please press the "Next" button in the bottom of the screen.</p>
+<p>Pressing this button will take you the the next set of instructions, and you will not be able to return to the previous screen.</p>
+<p>Click "Next" to go to the next screen. You will need to do this to advance once you are done with each screen.</p>
+
+
+
+
+    {% next_button %}
+
+{% endblock %}

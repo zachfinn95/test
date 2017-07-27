@@ -5,6 +5,8 @@ from otree.api import (
 import random
 from math import ceil
 from itertools import product
+import csv
+from collections import OrderedDict
 author = 'Philipp Chapkovski, UZH'
 
 doc = """
@@ -19,24 +21,28 @@ class Constants(BaseConstants):
     # till what round we play T0 and then change to whatever treatment
     # we have?::
     first_half = 9
+    second_half = first_half + 1
     assert first_half <= num_rounds, "SOMETHING WRONG WITH NUMBER OF ROUNDS!"
-    p = 0.3
+    p = 0.7
     initial_cost = 9
     final_cost = 15
     first_decision_labels = {
     'T0': """Do you want to pay an initial inv. cost of ${}  with the final
     investment cost determined based on what value payoff
-    is drawn? """.format(initial_cost),
+    is drawn?""".format(initial_cost),
     'T1': """Do you want to pay an initial inv. cost of ${} to
-    take this contract?
-          """.format(initial_cost),
+    take this contract?""".format(initial_cost),
     'T2': """Do you want to pay an initial inv. cost of ${} and a final inv
-     cost of ${} to release the randomly determined payoff??
-    """.format(initial_cost, final_cost),
+     cost of ${} to release the randomly determined payoff?""".format(initial_cost, final_cost),
     }
     low_payoff_set = [0, 6, 12]
     high_payoff_set = [24, 36, 54]
     payoffs_sets = list(product(low_payoff_set, high_payoff_set))
+    with open('kelsey/qs_to_add.csv') as f:
+        questions = list(csv.DictReader(f))
+
+    # a = dict(questions)
+        # questions = OrderedDict(sorted(questions.items(), key=lambda item: item['number']))
 
 def weighted_choice(a, b):
     assert 0 <= Constants.p <= 1, 'SOMETHING WRONG WITH PROBABILITIES, DUDE'
@@ -77,7 +83,10 @@ class Player(BasePlayer):
         investment cost of ${} to
          release this payoff?""".format(Constants.final_cost)
     )
+    # set of control questions for each treatment
 
+# filtered_dict = {k:v for (k,v) in d.items() if filter_string in k}
+    #  END OF set of control questions for each treatment
     def set_payoffs(self):
         if self.treatment == 'T0':
             self.payoff = self.first_decision * \
@@ -92,3 +101,12 @@ class Player(BasePlayer):
             self.payoff = self.first_decision * \
                 (-Constants.initial_cost +
                  self.investment_payoff - Constants.final_cost)
+
+
+for i in Constants.questions:
+    Player.add_to_class(i['qname'],
+                        models.CharField(verbose_name=i['verbose'].format(
+                         initial=3, final=6, hpayoff=15, lpayoff=2,
+                        ),
+                        widget=widgets.RadioSelectHorizontal(),
+                        choices=[i['option1'],i['option2']]))

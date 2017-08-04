@@ -38,9 +38,21 @@ class Constants(BaseConstants):
     low_payoff_set = [0, 6, 12]
     high_payoff_set = [24, 36, 54]
     payoffs_sets = list(product(low_payoff_set, high_payoff_set))
+    # values for control questions:
+    q_parameters = {'initial_cost': 9,
+                    'final_cost': 15,
+                    'high_payoff': 40,
+                    'low_payoff': 8,
+                    }
     with open('kelsey/qs_to_add.csv') as f:
         questions = list(csv.DictReader(f))
-
+    for q in questions:
+        q['verbose'] = q['verbose'].format(
+         initial=q_parameters['initial_cost'],
+         final=q_parameters['final_cost'],
+         hpayoff=q_parameters['high_payoff'],
+         lpayoff=q_parameters['low_payoff'],
+        )
     # a = dict(questions)
         # questions = OrderedDict(sorted(questions.items(), key=lambda item: item['number']))
 
@@ -105,8 +117,6 @@ class Player(BasePlayer):
 
 for i in Constants.questions:
     Player.add_to_class(i['qname'],
-                        models.CharField(verbose_name=i['verbose'].format(
-                         initial=3, final=6, hpayoff=15, lpayoff=2,
-                        ),
+                        models.CharField(verbose_name=i['verbose'],
                         widget=widgets.RadioSelectHorizontal(),
                         choices=[i['option1'],i['option2']]))

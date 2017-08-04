@@ -101,6 +101,19 @@ class Q(InstrPage):
         return [i['qname'] for i in Constants.questions
                 if i['treatment'] == self.player.treatment]
 
+class QResults(InstrPage):
+
+    def vars_for_template(self):
+        fields_to_get = [i['qname'] for i in Constants.questions
+                         if i['treatment'] == self.player.treatment]
+        results = [getattr(self.player, f) for f in fields_to_get]
+        qtexts = [i['verbose'] for i in Constants.questions
+                         if i['treatment'] == self.player.treatment]
+        qsolutions = [i['correct'] for i in Constants.questions
+                         if i['treatment'] == self.player.treatment]
+        is_correct = [True if i[0] == i[1] else False for i in zip(results, qsolutions)]
+        data = zip(qtexts, results,  qsolutions, is_correct)
+        return {'data': data}
 
 class Final(FirstRoundPage):
     pass
@@ -108,9 +121,10 @@ class Final(FirstRoundPage):
 # END OF INSTRUCTIONS AND QS BLOCK
 
 page_sequence = [
-    # Q,
-    InitialInvestment,
-    FinalInvestment,
-    # WP,
-    Results
+    Q,
+    QResults,
+    # InitialInvestment,
+    # FinalInvestment,
+    # # WP,
+    # Results
 ]

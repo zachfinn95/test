@@ -14,23 +14,23 @@
       <tbody>
     <tr>
       <td>Initial investment cost:</td>
-      <td><span class="badge">{{Constants.initial_cost}}</td>
+      <td><span class="badge">{{initial_cost|default:Constants.initial_cost}}</td>
     </tr>
     <tr>
       <th colspan=2>Inverstment payoff:</th>
 
     </tr>
     <tr  class='random success'>
-      <td class='{% if highlighted_low %} invalid' {% endif %}' >Low: <span class="badge">{{player.low_payoff}}</span></td>
+      <td class='{% if highlighted_low %} invalid' {% endif %}' >Low: <span class="badge">{{low_payoff|default:player.low_payoff}}</span></td>
       <td class='{% if highlighted_low %} invalid {% endif %}probs'>Probability: <span class="badge">{{p}}%</span></td>
     </tr>
     <tr  class='random success'>
-      <td class='{% if highlighted_high %} invalid' {% endif %}' >High: <span class="badge">{{player.high_payoff}}</span></td>
+      <td class='{% if highlighted_high %} invalid' {% endif %}' >High: <span class="badge">{{high_payoff|default:player.high_payoff}}</span></td>
       <td class='{% if highlighted_high %} invalid {% endif %} probs'>Probability: <span class="badge">{{p_1}}%</span></td>
     </tr>
 
       <td>Final investment cost:</td>
-      <td><span class="badge">{{    Constants.final_cost}}</td>
+      <td><span class="badge">{{final_cost|default:Constants.final_cost}}</td>
     </tr>
     </tbody>
   </table>

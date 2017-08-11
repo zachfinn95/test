@@ -28,12 +28,12 @@ class Constants(BaseConstants):
     initial_cost = 9
     final_cost = 15
     first_decision_labels = {
-    'T0': """Do you want to pay an initial inv. cost of ${}  with the final
+    'T0': """Do you want to pay an initial investment cost of ${}  with the final
     investment cost determined based on what value payoff
     is drawn?""".format(initial_cost),
-    'T1': """Do you want to pay an initial inv. cost of ${} to
+    'T1': """Do you want to pay an initial investment cost of ${} to
     take this contract?""".format(initial_cost),
-    'T2': """Do you want to pay an initial inv. cost of ${} and a final inv
+    'T2': """Do you want to pay an initial investment cost of ${} and a final investment
      cost of ${} to release the randomly determined payoff?""".format(initial_cost, final_cost),
     }
     low_payoff_set = [0, 6, 12]
@@ -45,6 +45,7 @@ class Constants(BaseConstants):
                     'high_payoff': 40,
                     'low_payoff': 8,
                     'PT0ExampleHigh': 16,
+                    'PT0ExampleLow': -16,
                     }
     with open('kelsey/qs_to_add.csv') as f:
         questions = list(csv.DictReader(f))

@@ -1,15 +1,9 @@
 <div class="well-lg well">
 
   <label class="control-label"
-                        for="id_first_decision">Do you want to pay an initial investment cost of ${{Constants.q_parameters.initial_cost}}
-                        {% if player.treatment == 'T0' %} with the final
- investment cost determined based on what value payoff
- is drawn?
- {% elif player.treatment == 'T1' %}
-  to take this contract?
- {% else %}
- and a final investment cost of ${{Constants.q_parameters.final_cost}} to release the randomly determined payoff?
- {% endif %}
+                        for="id_first_decision">Do you want to pay the final
+                            investment cost of ${{Constants.q_parameters.final_cost}} to
+                             release this payoff?
 
                  </label>
 

@@ -1,60 +1,13 @@
-{% extends "global/Page.html" %}
+{% extends "global/PageExt.html" %}
 {% load staticfiles otree_tags %}
 
 {% block title %}
     Round {{view.round_number}} of {{Constants.num_rounds}}: Results
 {% endblock %}
 
-{% block content %}
+{% block inner_content %}
 {% include 'kelsey/InfoBlock.html' %}
-
-<table class="table table-hover table-striped">
-  <thead><tr><th colspan=3>
-    Your earnings in this round:
-  </th></tr></thead>
-  <tbody>
-    {% if player.first_decision %}
-<tr>
-  <td>Initial investment: </td>
-  <td>  <h5>
-    <span class="glyphicon glyphicon-minus red" aria-hidden="true"></span>
-    <span class="sr-only">Minus</span>
-  </h5></td>
-  <td>{{Constants.initial_cost}}</td>
-</tr>
-
-    {% if show_final_investment_block %}
-<tr>
-
-  <td>Investment payoff:</td>
-  <td> <h5>
-    <span class="glyphicon glyphicon-plus green" aria-hidden="true"></span>
-    <span class="sr-only">Plus</span>
-  </h5> </td>
-  <td>{{player.investment_payoff}}</td>
-</tr>
-<td>Final investment: </td>
-<td>  <h5>
-  <span class="glyphicon glyphicon-minus red" aria-hidden="true"></span>
-  <span class="sr-only">Minus</span>
-</h5></td>
-<td>{{Constants.final_cost}}</td>
-</tr>
-{% endif %}
-{% endif %}
-<tr>
-      {% if player.first_decision %}
-  <th class='success'> </th>
-  <th class='success'> <h5>
-    =
-  </h5> </th>
-{% endif %}
-  <th class='success'>{{player.payoff}}</th>
-</tr>
-
-
-</tbody>
-</table>
+{% include 'kelsey/result_block.html' with first_decision=player.first_decision %}
 
     {% next_button %}
 {% endblock %}

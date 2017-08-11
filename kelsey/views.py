@@ -3,6 +3,7 @@ from . import models
 from ._builtin import Page, WaitPage
 from .models import Constants
 
+
 class MyPage(Page):
     ...
     # timeout_seconds = 60
@@ -92,7 +93,7 @@ class Instr4(InstrPage):
 
 
 class Example(InstrPage):
-    pass
+    ...
 
 
 class Q(InstrPage):
@@ -121,10 +122,14 @@ class Final(FirstRoundPage):
 # END OF INSTRUCTIONS AND QS BLOCK
 
 page_sequence = [
+    # Instr1,
+    # Instr2,
+    # Instr3,
+    # Example,
     Q,
     QResults,
     # InitialInvestment,
     # FinalInvestment,
-    # # WP,
+    # # # WP,
     # Results
 ]

@@ -111,6 +111,22 @@ SESSION_CONFIG_DEFAULTS = {
 
 SESSION_CONFIGS = [
     {
+        'name': 'kelseyT1T1',
+        'display_name': 'T1-T1',
+        'num_demo_participants': 1,
+        'app_sequence': ['kelsey'],
+        'first_half': 'T1',
+        'second_half': 'T1'
+    },
+    {
+        'name': 'kelseyT2T2',
+        'display_name': 'T2-T2',
+        'num_demo_participants': 1,
+        'app_sequence': ['kelsey'],
+        'first_half': 'T2',
+        'second_half': 'T2'
+    },
+    {
         'name': 'kelseyT0T1',
         'display_name': 'T0-T1',
         'num_demo_participants': 1,

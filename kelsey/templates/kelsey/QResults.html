@@ -1,11 +1,11 @@
-{% extends "global/Page.html" %}
+{% extends "global/PageExt.html" %}
 {% load staticfiles otree_tags %}
 
 {% block title %}
     Answer to comprehension questions
 {% endblock %}
 
-{% block content %}
+{% block inner_content %}
 
 {% include 'kelsey/InfoBlock.html' with initial_cost=Constants.q_parameters.initial_cost final_cost=Constants.q_parameters.final_cost high_payoff=Constants.q_parameters.high_payoff low_payoff=Constants.q_parameters.low_payoff   %}
 

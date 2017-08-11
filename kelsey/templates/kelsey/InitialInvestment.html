@@ -1,14 +1,15 @@
-{% extends "global/Page.html" %}
+{% extends "global/PageExt.html" %}
 {% load staticfiles otree_tags %}
 
 {% block title %}
     Round {{view.round_number}} of {{Constants.num_rounds}}: Initial Investment
 {% endblock %}
 
-{% block content %}
+{% block inner_content %}
 {% include 'kelsey/InfoBlock.html' %}
-{% formfield player.first_decision with label=first_decision_label %}
 
+{% formfield player.first_decision with label=first_decision_label %}
+{% include 'kelsey/slider_wrapper.html' %}
     {% next_button %}
 
 {% endblock %}

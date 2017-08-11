@@ -43,6 +43,7 @@ class Constants(BaseConstants):
                     'final_cost': 15,
                     'high_payoff': 40,
                     'low_payoff': 8,
+                    'PT0ExampleHigh': 16,
                     }
     with open('kelsey/qs_to_add.csv') as f:
         questions = list(csv.DictReader(f))

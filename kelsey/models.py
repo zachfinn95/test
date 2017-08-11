@@ -7,6 +7,7 @@ from math import ceil
 from itertools import product
 import csv
 from collections import OrderedDict
+from django import forms as djforms
 author = 'Philipp Chapkovski, UZH'
 
 doc = """
@@ -86,6 +87,9 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+    consent = models.BooleanField(widget=djforms.CheckboxInput,
+                                  initial=False
+                                  )
     treatment = models.CharField()
     investment_payoff = models.IntegerField()
     low_payoff = models.IntegerField()

@@ -7,21 +7,24 @@
 
 {% block inner_content %}
 
+<div class="row">
+  <div class="col-sm-12">
+  <div class="box box1 shadow1">
+    <p>The experiment has two separate parts. Each part of the experiment has {{Constants.first_half}}  rounds.</p>
+    <p>In each round, you will be offered an investment contract.</p>
+    <p>At the end of the experiment, one contract (one round) from each part will be selected for payment.</p>
 
-<p>The experiment has two separate parts. Each part of the experiment has {{Constants.first_half}}  rounds.</p>
-<p>In each round, you will be offered an investment contract.</p>
-<p>At the end of the experiment, one contract (one round) from each part will be selected for payment.</p>
-
-<p>At the end of the experiment, your earnings from each part will be combined with
-   the show up fee to determine your earnings in the experiment.
-  </p>
-<p>We will explain the instructions for Part 1 next. After you finish Part 1,
-  we will explain the instructions for Part 2.</p>
-<p>The following instructions apply to every contract in Part 1,
-   which will last for {{Constants.first_half}} rounds.
-  </p>
-
-
+    <p>At the end of the experiment, your earnings from each part will be combined with
+    the show up fee to determine your earnings in the experiment.
+    </p>
+    <p>We will explain the instructions for Part 1 next. After you finish Part&nbsp;1,
+    we will explain the instructions for Part&nbsp;2.</p>
+    <p>The following instructions apply to every contract in Part&nbsp;1,
+    which will last for {{Constants.first_half}} rounds.
+    </p>
+</div>
+</div>
+</div>
     {% next_button %}
 
 {% endblock %}

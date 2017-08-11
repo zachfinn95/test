@@ -2,7 +2,7 @@ from otree.api import Currency as c, currency_range
 from . import models
 from ._builtin import Page, WaitPage
 from .models import Constants
-
+from .forms import ConsentForm
 
 class MyPage(Page):
     ...
@@ -75,7 +75,18 @@ class FirstRoundPage(InstrPage):
     def extra_displayed(self):
         return self.round_number == 1
 
+from django.views.generic.edit import FormView
+class Consent(FirstRoundPage):
+    # form_class = ConsentForm
+    form_model = models.Player
+    form_fields = ['consent']
+    # def get_form_class(self):
+    #     # return
+    #     return self.form_class
 
+    def consent_error_message(self, value):
+        if not value:
+            return 'You must accept the consent form'
 class Instr1(FirstRoundPage):
     ...
 
@@ -122,14 +133,14 @@ class Final(FirstRoundPage):
 # END OF INSTRUCTIONS AND QS BLOCK
 
 page_sequence = [
-    # Instr1,
-    # Instr2,
-    # Instr3,
-    # Example,
+    Consent,
+    Instr1,
+    Instr2,
+    Instr3,
+    Example,
     Q,
     QResults,
-    # InitialInvestment,
-    # FinalInvestment,
-    # # # WP,
-    # Results
+    InitialInvestment,
+    FinalInvestment,
+    Results
 ]

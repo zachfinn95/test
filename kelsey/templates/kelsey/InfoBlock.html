@@ -17,19 +17,41 @@
       <td><span class="badge">{{initial_cost|default:Constants.initial_cost}}</td>
     </tr>
     <tr>
-      <th colspan=2>Inverstment payoff:</th>
+      <th colspan=2>Investment payoff:</th>
 
     </tr>
     <tr  class='random success'>
       <td class='{% if highlighted_low %} invalid' {% endif %}' >Low: <span class="badge">{{low_payoff|default:player.low_payoff}}</span></td>
-      <td class='{% if highlighted_low %} invalid {% endif %}probs'>Probability: <span class="badge">{{p}}%</span></td>
+      <td class='{% if highlighted_low %} invalid {% endif %}probs'>Chances the Payoff is Low: <span class="badge">{{p}}%</span></td>
     </tr>
     <tr  class='random success'>
       <td class='{% if highlighted_high %} invalid' {% endif %}' >High: <span class="badge">{{high_payoff|default:player.high_payoff}}</span></td>
-      <td class='{% if highlighted_high %} invalid {% endif %} probs'>Probability: <span class="badge">{{p_1}}%</span></td>
+      <td class='{% if highlighted_high %} invalid {% endif %} probs'>Chances the Payoff is High: <span class="badge">{{p_1}}%</span></td>
     </tr>
+    <tr>
+      <td colspan=2 class='bg-white'>    <div class="media">
+                <div class="media-left">
+                    <img class="media-object" data-src="holder.js/64x64" alt="jar_pic" style="width: auto; height: 100px;" src="{% static 'img/jar.png' %}" data-holder-rendered="true" data-pin-nopin="true">
+                </div>
+                <div class="media-body">The chances you get a low payoff are the
+                   same as the chances you draw a red ball from this bin. <br>
+                   While the chances you get a high payoff are the same as
+                   the chances you draw a blue ball from this bin.</td>
 
-      <td>Final investment cost:</td>
+    </tr>
+<tr>
+
+
+      <td ><span data-toggle="tooltip" data-placement="right" data-html='true' title="<h5>
+        {% if player.treatment == 'T0' %}
+        Will be automatically paid only if the realized payoff is larger than this amount.
+        {% elif player.treatment == 'T1' %}
+        You will have an opportunity to chose whether or not to make it after seeing the realization of the payoff.
+        {% else %}
+        Will be automatically paid whenever you chose to make the initial investment.
+        {% endif %}
+      </h5>">Final investment cost <span class="glyphicon glyphicon-info-sign blue" aria-hidden="true"></span></span>:</td>
+
       <td><span class="badge">{{final_cost|default:Constants.final_cost}}</td>
     </tr>
     </tbody>
@@ -56,6 +78,11 @@
 {% endif %}
 
 </div>
+<script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
 {% if prob_realized %}
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <script>
@@ -93,6 +120,6 @@
   td {
       /*padding: 1em;*/
   }
-  
+
   </style>
 {% endif %}

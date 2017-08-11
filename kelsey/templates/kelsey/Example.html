@@ -24,9 +24,9 @@
 
 
     <li class="list-group-item">
-      With {{p}}% probability, you will receive {{Constants.q_parameters.low_payoff}}.
-      Since the payoff of {{Constants.q_parameters.low_payoff}} is less than the
-      final investment cost of {{Constants.q_parameters.final_cost}},
+      With {{p}}% probability, you will receive ${{Constants.q_parameters.low_payoff}}.
+      Since the payoff of ${{Constants.q_parameters.low_payoff}} is less than the
+      final investment cost of ${{Constants.q_parameters.final_cost}},
       you will not be charged the final investment cost.
       So you will see the following:
       <div class="well">{% include 'kelsey/result_block.html' with first_decision=1 investment_payoff=Constants.q_parameters.low_payoff show_final_investment_block=0 payoff=Constants.q_parameters.initial_cost|inv%}</div>
@@ -35,10 +35,10 @@
 
     <li class="list-group-item">
       with {{p_1}}% probability, you will
-      receive {{Constants.q_parameters.high_payoff}}.
-      Since the payoff of {{Constants.q_parameters.high_payoff}}
+      receive ${{Constants.q_parameters.high_payoff}}.
+      Since the payoff of ${{Constants.q_parameters.high_payoff}}
        is greater than the final
-      investment cost of {{Constants.q_parameters.final_cost}},
+      investment cost of ${{Constants.q_parameters.final_cost}},
       so you will be charged the final investment cost.
       So  you will see the following:
       <div class="well">

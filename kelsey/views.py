@@ -59,8 +59,9 @@ class Results(MyPage):
                 dict_to_return['show_final_investment_block'] = True
             if (self.player.treatment == 'T1' and
                     self.player.second_decision):
-                dict_to_return['modal_shown'] = False
                 dict_to_return['show_final_investment_block'] = True
+            if self.player.treatment == 'T1':
+                dict_to_return['modal_shown'] = False
             return dict_to_return
 
 

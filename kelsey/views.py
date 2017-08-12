@@ -17,10 +17,13 @@ def vars_for_all_templates(self):
 
 
 def what_to_highlight(p):
+
     return {
         'highlighted_high': p.investment_payoff == p.high_payoff,
         'highlighted_low': p.investment_payoff == p.low_payoff,
-        'prob_realized': True,}
+        'prob_realized': True,
+        'modal_shown': True,
+        }
 
 
 
@@ -56,6 +59,7 @@ class Results(MyPage):
                 dict_to_return['show_final_investment_block'] = True
             if (self.player.treatment == 'T1' and
                     self.player.second_decision):
+                dict_to_return['modal_shown'] = False
                 dict_to_return['show_final_investment_block'] = True
             return dict_to_return
 

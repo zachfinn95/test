@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block inner_content %}
-{{qs}}
+
 {% include 'kelsey/InfoBlock.html' with initial_cost=Constants.q_parameters.initial_cost final_cost=Constants.q_parameters.final_cost high_payoff=Constants.q_parameters.high_payoff low_payoff=Constants.q_parameters.low_payoff   %}
 
 <div class="well-lg well">

@@ -12,9 +12,8 @@
     <div class="well-lg well">
       Referring to the contract is shown above:
     </div>
-    <table>
-{{ sponsorships.as_p }}
-</table>
+{% form form using "kelsey/bootstrap.html" %}
+
     {% next_button %}
     {% include 'kelsey/slider_wrapper.html' %}
 {% endblock %}

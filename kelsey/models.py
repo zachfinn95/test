@@ -5,6 +5,7 @@ from otree.api import (
 import random
 from math import ceil
 from itertools import product
+from otree.db.models import Model, ForeignKey
 import csv
 from collections import OrderedDict
 from django import forms as djforms
@@ -72,6 +73,7 @@ class Subsession(BaseSubsession):
         first_half = self.session.config.get('first_half', 'T0')
         second_half = self.session.config.get('second_half', 'T0')
         for p in self.get_players():
+            p.generate_question_stubs()
             curpayoffset = (Constants.payoffs_sets.copy())
             random.shuffle(curpayoffset)
             p.participant.vars.setdefault('payoffsets', curpayoffset)
@@ -83,13 +85,7 @@ class Subsession(BaseSubsession):
                 p.treatment = first_half
             else:
                 p.treatment = second_half
-        # print('######', len(Player.objects.filter(subsession=self)))
-        # for p in self.get_players():
-        #     p.treatment='yyyy'
-        # import otree.db.idmap
-        # # otree.db.idmap.save_objects()
-        # otree.db.idmap.flush_cache()
-        # Player.objects.filter(subsession=self).update(treatment='ыыыы')
+
 
 
 class Group(BaseGroup):
@@ -110,7 +106,18 @@ class Player(BasePlayer):
         investment cost of ${} to
          release this payoff?""".format(Constants.final_cost)
     )
-    # set of control questions for each treatment
+
+    def generate_question_stubs(self):
+        """
+        Create a fixed number of "decision stubs", i.e. decision objects that only have a random "value" field on
+        which the player will base her or his decision later in the game.
+        """
+        for _ in range(7):
+            print('SUKA')
+            question = self.question_set.create()
+            question.verbose = random.randint(1, 10)
+            question.save()
+
 
 # filtered_dict = {k:v for (k,v) in d.items() if filter_string in k}
     #  END OF set of control questions for each treatment
@@ -129,9 +136,16 @@ class Player(BasePlayer):
                 (-Constants.initial_cost +
                  self.investment_payoff - Constants.final_cost)
 
-
-for i in Constants.questions:
-    Player.add_to_class(i['qname'],
-                        models.CharField(verbose_name=i['verbose'],
-                        widget=widgets.RadioSelectHorizontal(),
-                        choices=[i['option1'],i['option2']]))
+class Question(Model):   # our custom model inherits from Django's base class "Model"
+    verbose = models.CharField(blank=True, null=True)
+    option1 = models.CharField(blank=True, null=True)
+    option2 = models.CharField(blank=True, null=True)
+    correct = models.CharField(blank=True, null=True)
+    treatment = models.CharField(blank=True, null=True)
+    player = ForeignKey(Player)
+#
+# for i in Constants.questions:
+#     Player.add_to_class(i['qname'],
+#                         models.CharField(verbose_name=i['verbose'],
+#                         widget=widgets.RadioSelectHorizontal(),
+#                         choices=[i['option1'],i['option2']]))

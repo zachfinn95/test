@@ -2,123 +2,12 @@
 {% load staticfiles otree_tags filka_tags %}
 
 {% block title %}
-    Example
+    Part {{part_number}}: Example
 {% endblock %}
 
 {% block inner_content %}
-    {% include 'kelsey/InfoBlock.html' with initial_cost=Constants.q_parameters.initial_cost final_cost=Constants.q_parameters.final_cost high_payoff=Constants.q_parameters.high_payoff low_payoff=Constants.q_parameters.low_payoff   %}
-    {% if player.treatment == 'T0' %}
-      For example, imagine the elements of the contract are given by the numbers above.
-      You will be asked to make the following decisions:
-      {% include 'kelsey/example_first_decision.html' %}
 
-      <ul class="list-group striped">
-      <li class="list-group-item">…if you choose
-        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" disabled value="option1 ">
-        <strong>No</strong>, you earn 0 in this round and you go to the next round.</li>
-
-
-      <li class="list-group-item">…if you choose <input type="radio" name="inlineRadioOptions" id="inlineRadio1" disabled value="option1 ">
-      <strong>Yes</strong>, you are then taken to a different screen with
-      information that depends on which of the randomly determined payoffs is drawn.</li>
-
-
-    <li class="list-group-item">
-      With {{p}}% probability, you will receive ${{Constants.q_parameters.low_payoff}}.
-      Since the payoff of ${{Constants.q_parameters.low_payoff}} is less than the
-      final investment cost of ${{Constants.q_parameters.final_cost}},
-      you will not be charged the final investment cost.
-      So you will see the following:
-      <div class="well">{% include 'kelsey/result_block.html' with first_decision=1 investment_payoff=Constants.q_parameters.low_payoff show_final_investment_block=0 payoff=Constants.q_parameters.initial_cost|inv%}</div>
-    </li>
-
-
-    <li class="list-group-item">
-      with {{p_1}}% probability, you will
-      receive ${{Constants.q_parameters.high_payoff}}.
-      Since the payoff of ${{Constants.q_parameters.high_payoff}}
-       is greater than the final
-      investment cost of ${{Constants.q_parameters.final_cost}},
-      so you will be charged the final investment cost.
-      So  you will see the following:
-      <div class="well">
-        {% include 'kelsey/result_block.html' with first_decision=1 investment_payoff=Constants.q_parameters.high_payoff  show_final_investment_block=1 payoff=Constants.q_parameters.PT0ExampleHigh%}
-      </div>
-     </li>
-    </ul>
-
-
-    {% elif player.treatment == 'T1' %}
-      For example, imagine the elements of the contract are given by the numbers above.
-      You will be asked to make the following decision:
-      {% include 'kelsey/example_first_decision.html' %}
-
-      <ul class="list-group striped">
-      <li class="list-group-item">…if you choose
-        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" disabled value="option1 ">
-        <strong>No</strong>, you earn 0 in this round and you go to the next round.</li>
-
-
-      <li class="list-group-item">…if you choose <input type="radio" name="inlineRadioOptions" id="inlineRadio1" disabled value="option1 ">
-      <strong>Yes</strong>, you are then taken to a different screen with
-      information that depends on which of the randomly determined payoffs is drawn.</li>
-
-
-    <li class="list-group-item">
-      <p>With {{p}}% probability, you will receive {{Constants.q_parameters.low_payoff}}.</p>
-      <p>With {{p_1}}% probability, you will
-        receive {{Constants.q_parameters.high_payoff}}.</p>
-      You will then be asked to make the following decision:
-  {% include 'kelsey/example_second_decision.html' %}
-
-      <p>For example, let's say you receive payoff of ${{Constants.q_parameters.high_payoff}} and
-        you chose to pay the final
-            investment cost of ${{Constants.q_parameters.final_cost}} to
-             release this payoff.</p>
-      <p>Then you will see the following:</p>
-
-      <div class="well">
-        {% include 'kelsey/result_block.html' with first_decision=1 investment_payoff=Constants.q_parameters.high_payoff  show_final_investment_block=1 payoff=Constants.q_parameters.PT0ExampleHigh%}
-      </div>
-     </li>
-    </ul>
-
-    {% else %}
-      For example, imagine the elements of the contract are given by the numbers above.
-      You will be asked to make the following decisions:
-      {% include 'kelsey/example_first_decision.html' %}
-
-      <ul class="list-group striped">
-      <li class="list-group-item">…if you choose
-        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" disabled value="option1 ">
-        <strong>No</strong>, you earn 0 in this round and you go to the next round.</li>
-
-
-      <li class="list-group-item">…if you choose <input type="radio" name="inlineRadioOptions" id="inlineRadio1" disabled value="option1 ">
-      <strong>Yes</strong>, you are then taken to a different screen with
-      information that depends on which of the randomly determined payoffs is drawn.</li>
-
-
-    <li class="list-group-item">
-      With {{p}}% probability, you will see the following:
-      <div class="well">
-          {% include 'kelsey/result_block.html' with first_decision=1 investment_payoff=Constants.q_parameters.low_payoff  show_final_investment_block=1 payoff=Constants.q_parameters.PT0ExampleLow%}
-      </div>
-    </li>
-
-
-    <li class="list-group-item">
-      with {{p_1}}% probability, you will see the following:
-      <div class="well">
-        {% include 'kelsey/result_block.html' with first_decision=1 investment_payoff=Constants.q_parameters.high_payoff  show_final_investment_block=1 payoff=Constants.q_parameters.PT0ExampleHigh%}
-      </div>
-     </li>
-    </ul>
-
-
-
-    {% endif %}
-
+    {% include 'kelsey/inner_example.html' %}
     {% next_button %}
     {% include 'kelsey/slider_wrapper.html' %}
 {% endblock %}

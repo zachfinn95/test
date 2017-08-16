@@ -12,8 +12,19 @@ class MyPage(Page):
 def vars_for_all_templates(self):
     p_1 = int(round(1 - Constants.p, 1)*100)
     p = int(round(Constants.p, 1)*100)
+    if self.round_number <= Constants.first_half:
+        part_round_number = self.round_number
+    else:
+        part_round_number = self.round_number - Constants.first_half
+    part_number = int(self.round_number > Constants.first_half) + 1
+    max_rounds = Constants.first_half if \
+        self.round_number <= Constants.first_half \
+        else Constants.second_half - 1
     return {'p_1': p_1,
-            'p': p}
+            'p': p,
+            'part_round_number': part_round_number,
+            'part_number': part_number,
+            'max_rounds': max_rounds, }
 
 
 def what_to_highlight(p):
@@ -76,18 +87,16 @@ class InstrPage(MyPage):
 
     def extra_displayed(self):
         return True
-class FirstRoundPage(InstrPage):
-    def extra_displayed(self):
+
+
+class FirstRoundPage(MyPage):
+    def is_displayed(self):
         return self.round_number == 1
 
-from django.views.generic.edit import FormView
+
 class Consent(FirstRoundPage):
-    # form_class = ConsentForm
     form_model = models.Player
     form_fields = ['consent']
-    # def get_form_class(self):
-    #     # return
-    #     return self.form_class
 
     def consent_error_message(self, value):
         if not value:
@@ -111,6 +120,8 @@ class Instr4(InstrPage):
 class Example(InstrPage):
     ...
 
+class Separ(InstrPage):
+    ...
 
 class Q(InstrPage):
     form_model = models.Player
@@ -132,8 +143,6 @@ class QResults(InstrPage):
         data = zip(qtexts, results,  qsolutions, is_correct)
         return {'data': data}
 
-class Final(FirstRoundPage):
-    pass
 
 # END OF INSTRUCTIONS AND QS BLOCK
 
@@ -145,6 +154,7 @@ page_sequence = [
     Example,
     Q,
     QResults,
+    Separ,
     InitialInvestment,
     FinalInvestment,
     Results

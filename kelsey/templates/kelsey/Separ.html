@@ -1,0 +1,52 @@
+{% extends "global/PageExt.html" %}
+{% load staticfiles otree_tags filka_tags %}
+
+{% block title %}
+    Begining of Part {{part_number}} of the study
+{% endblock %}
+
+{% block inner_content %}
+    <h3>Now the study begins</h3>
+<div class='row filkarow'>
+   <div class="col-sm-12 col-md-12 col-lg-12">
+<button id='show_example' class="btn btn-info btn-lg pull-left  " type='button'>Click to review the example</button>
+<button class="otree-btn-next btn btn-primary btn-lg next-button otree-next-button pull-right filkabtn">Next</button>
+</div>
+</div>
+
+
+    <div id="example" class='instructions'>
+        {% include 'kelsey/inner_example.html' %}
+
+</div>
+
+
+
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    $('#show_example').click(function(){
+
+      var $example = $('#example');
+      $example.toggle();
+      if ($example.is(':visible'))
+      {$(this).text('Click to hide the example');}
+      else   {$(this).text('Click to review the example');}
+    });
+  </script>
+{% endblock %}
+
+{% block styles %}
+  <style media="screen">
+    #example{
+      margin-top:10px;
+      margin-bottom: 10px;
+      display:none;
+    }
+    .filkabtn{
+      float:right:
+    }
+    .filkarow{margin-bottom: 10px;}
+  </style>
+{% endblock %}

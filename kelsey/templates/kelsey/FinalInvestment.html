@@ -2,7 +2,7 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    Round {{view.round_number}} of {{Constants.num_rounds}}: Final Investment
+  {% include 'kelsey/title.html' %}: Final Investment
 {% endblock %}
 
 {% block inner_content %}

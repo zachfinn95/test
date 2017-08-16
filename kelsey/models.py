@@ -67,6 +67,8 @@ def weighted_choice(a, b):
     return b
 class Subsession(BaseSubsession):
     def before_session_starts(self):
+
+
         first_half = self.session.config.get('first_half', 'T0')
         second_half = self.session.config.get('second_half', 'T0')
         for p in self.get_players():
@@ -81,6 +83,13 @@ class Subsession(BaseSubsession):
                 p.treatment = first_half
             else:
                 p.treatment = second_half
+        # print('######', len(Player.objects.filter(subsession=self)))
+        # for p in self.get_players():
+        #     p.treatment='yyyy'
+        # import otree.db.idmap
+        # # otree.db.idmap.save_objects()
+        # otree.db.idmap.flush_cache()
+        # Player.objects.filter(subsession=self).update(treatment='ыыыы')
 
 
 class Group(BaseGroup):

@@ -112,8 +112,13 @@ class Player(BasePlayer):
     )
     # set of control questions for each treatment
 
+    for i in Constants.questions:
+        locals()[i['qname']] = models.CharField(verbose_name=i['verbose'],
+                                                widget=widgets.RadioSelectHorizontal(),
+                                                choices=[i['option1'], i['option2']])
 # filtered_dict = {k:v for (k,v) in d.items() if filter_string in k}
     #  END OF set of control questions for each treatment
+
     def set_payoffs(self):
         if self.treatment == 'T0':
             self.payoff = self.first_decision * \
@@ -128,10 +133,3 @@ class Player(BasePlayer):
             self.payoff = self.first_decision * \
                 (-Constants.initial_cost +
                  self.investment_payoff - Constants.final_cost)
-
-
-for i in Constants.questions:
-    Player.add_to_class(i['qname'],
-                        models.CharField(verbose_name=i['verbose'],
-                        widget=widgets.RadioSelectHorizontal(),
-                        choices=[i['option1'],i['option2']]))

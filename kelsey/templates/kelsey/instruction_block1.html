@@ -1,120 +1,136 @@
-
-
-
-
-    <p>In Part {% if player.treatment == 'T0' %}1{% else %}2{% endif %},
+<p>In Part {% if player.treatment == 'T0' %}1{% else %}2{% endif %},
     each round gives you a choice over an investment contract
     with the following elements. The values associated with
     these elements will change from round to round.
-    </p>
-    <ul class="list-group striped">
-      <li class="list-group-item list-group-item-info">
+</p>
+<ul class="list-group striped">
+    <li class="list-group-item list-group-item-info">
         An initial investment cost.
-      </li>
-      <li class="list-group-item list-group-item-warning ">
+    </li>
+    <li class="list-group-item list-group-item-warning ">
         Two possible payoffs (which one you actually get will be randomly determined).
-      </li>
-      <li class="list-group-item list-group-item-danger">
-        The probabilities associated with each possible payoff.
-      </li>
-      <li class="list-group-item list-group-item-success">
+    </li>
+    <li class="list-group-item list-group-item-danger">
+        The chances associated with each possible payoff.
+    </li>
+    <li class="list-group-item list-group-item-success">
         A final investment cost.
-      </li>
-    </ul>
-
-
-    <p>After learning these elements:</p>
-
-<ul>
-  <li>You will choose whether or not to pay the <span class="info">initial investment cost</span>.</li>
-
-  <li>If you choose the pay the <span class="info">cost</span>, a random number generator will determine
-  the exact <span class="warning">payoff</span> according to the stated <span class="danger">probabilities</span>.</li>
-
-
-  {% if player.treatment == 'T0' %}
-      <li>If the <span class="warning">payoff</span> is greater than the <span class="success">final investment cost</span>,
-      then the <span class="success">final investment cost</span> will be automatically charged
-      and you will earn the <span class="warning">payoff</span>. If the <span class="warning">payoff</span> is less
-      than the <span class="success">final investment cost</span>, then you will not be
-      charged the <span class="success">final investment cost</span> and you will not earn the <span class="warning">payoff</span>.</li>
-
-  {% elif player.treatment == 'T1' %}
-
-      <li>You will choose whether or not to pay the <span class="success">final investment cost</span>
-        in order to release the <span class="warning">payoff</span>.</li>
-
-  {% else %}
-
-      <li>The <span class="warning">payoff</span> will be released
-        and the <span class="success">final investment cost</span>
-        will be automatically charged.</li>
-
-  {% endif %}
-
+    </li>
 </ul>
 
-    <p>If you choose <strong>not</strong> to pay
-      the <span class="info">initial investment cost</span>{% if player.treatment == 'T2' %}
-      and the <span class="success">final investment cost</span>{% endif %},
-    the net earnings for that round will be zero. If that
-    round gets selected for payment, your final earnings
-    will not go up or down.</p>
+
+<p>After learning these elements:</p>
+
+<ul>
+    {% if player.treatment == 'T2' %}
+        <li>You will choose at the start whether or not to pay <b>both</b>, the <span class="info">initial investment cost</span> and the <span class="success">final
+            cost</span>.
+        </li>
+    {% else %}
+        <li>You will choose whether or not to pay the <span class="info">initial investment cost</span>.</li>
+    {% endif %}
+
+
+    <li>If you choose the pay the <span class="info">cost</span>, a random number generator will determine
+        the exact <span class="warning">payoff</span> according to the stated <span class="danger">chances</span>.
+    </li>
+
 
     {% if player.treatment == 'T0' %}
-        <p>If you choose to pay the <span class="info">initial investment cost</span>, the
-        earnings for that round will be determined by which <span class="warning">payoff</span>
-        is chosen according to the stated <span class="danger">probabilities</span>. You will
-        be charged the <span class="success">final investment cost</span> only if it raises your
-        earnings from the contract. Specifically:</p>
-        <p>If the <span class="success">final investment cost</span> is less than the <span class="warning">payoff</span>,
-          you will earn:</p>
-    {% elif player.treatment == 'T1' %}
-        <p>If you choose to pay the <span class="info">initial investment cost</span>
-          and to pay the <span class="success">final investment cost</span>
-          to release the <span class="warning">payoff</span>, your earnings
-          from that round will be:</p>
-
-    {% else %}
-
-        <p>If you choose to pay the <span class="info">initial</span>
-          and <span class="success">final investment costs</span>,
-          the earnings for that round will be determined by
-          which <span class="warning">payoff</span> is chosen according to the
-          stated <span class="danger">probabilities</span>.</p>
-          <p>Specifically, if you decide to pay <span class="info">initial</span>
-            and <span class="success">final investment costs</span>, you will earn:
-          </p>
-
-    {% endif %}
-    <div class="panel panel-default">
-        <div class="panel-body pagination-centered text-center">
-            <button type="button" class="btn btn-primary btn-lg round">0</button>
-            <span class="ariph">-</span>
-            <button type="button" class="btn btn-info btn-lg round">Initial investment cost</button>
-            <span class="ariph">+</span>
-            <button type="button" class="btn btn-warning btn-lg round">payoff</button>
-            <span class="ariph">-</span>
-            <button type="button" class="btn btn-success btn-lg round">Final investment cost</button>
-        </div>
-    </div>
-
-
-    {% if player.treatment != 'T2' %}
-        {% if player.treatment == 'T0' %}
-              <p>If the <span class="warning">payoff</span> is less than the
-                <span class="success">final investment cost</span>, you will earn:</p>
-        {% elif player.treatment == 'T1' %}
-              <p>If you choose to pay the <span class="info">initial investment cost</span>
-                 and choose not to pay the <span class="success">final investment cost</span>
-                 to release the <span class="warning">payoff</span>, your earnings
-                  from that round will be:</p>
-
-        {% endif %}
+        <li>If the <span class="warning">payoff</span> is greater than the <span
+                class="success">final investment cost</span>,
+            then the <span class="success">final investment cost</span> will be automatically charged
+            and you will earn the <span class="warning">payoff</span>. This is the amount that will be added to your
+            show up fee and earnings in the other part of the experiment:
+        </li>
         <div class="panel panel-default">
             <div class="panel-body pagination-centered text-center">
-                <button type="button" class="btn  btn-lg round">0</button> <strong>-</strong>
-                <button type="button" class="btn btn-primary btn-lg round">Initial investment cost</button>
+                <span class="ariph">-</span>
+                <button type="button" class="btn btn-info btn-lg round">Initial investment cost</button>
+                <span class="ariph">+</span>
+                <button type="button" class="btn btn-warning btn-lg round">payoff</button>
+                <span class="ariph">-</span>
+                <button type="button" class="btn btn-success btn-lg round">Final investment cost</button>
+            </div>
+        </div>
+
+        <li>If the <span class="warning">payoff</span> is less
+            than the <span class="success">final investment cost</span>, then you will not be
+            charged the <span class="success">final investment cost</span> and you will not earn the <span
+                    class="warning">payoff</span>. This is the amount that will be added to your show up fee and
+            earnings in the other part of the experiment:
+        </li>
+
+        <div class="panel panel-default">
+            <div class="panel-body pagination-centered text-center">
+                <h3 class="inline_h3"><strong>-</strong></h3>
+                <button type="button" class="btn btn-info btn-lg round">Initial investment cost</button>
+            </div>
+        </div>
+
+    {% elif player.treatment == 'T1' %}
+
+        <li>You will choose whether or not to pay the <span class="success">final investment cost</span>
+            in order to release the <span class="warning">payoff</span>. Notice that, unlike in the last Part, you now
+            have to make a decision about whether to pay the final investment cost, which will happen after you learn
+            the payoffs.
+        </li>
+        <li>If you choose to pay the <span class="info">initial investment cost</span>
+            and to pay the <span class="success">final investment cost</span>
+            to release the <span class="warning">payoff</span>, this is the amount that will be added to your show up
+            fee and earnings in the other part of the experiment:
+        </li>
+        <div class="panel panel-default">
+            <div class="panel-body pagination-centered text-center">
+                <span class="ariph">-</span>
+                <button type="button" class="btn btn-info btn-lg round">Initial investment cost</button>
+                <span class="ariph">+</span>
+                <button type="button" class="btn btn-warning btn-lg round">payoff</button>
+                <span class="ariph">-</span>
+                <button type="button" class="btn btn-success btn-lg round">Final investment cost</button>
+            </div>
+        </div>
+        <li>If you choose to pay the <span class="info">initial investment cost</span>
+            and choose not to pay the <span class="success">final investment cost</span>
+            to release the <span class="warning">payoff</span>, this is the amount that will be added to your show up
+            fee and earnings in the other part of the experiment:
+        </li>
+        <div class="panel panel-default">
+            <div class="panel-body pagination-centered text-center">
+                <h3 class="inline_h3"><strong>-</strong></h3>
+                <button type="button" class="btn btn-info btn-lg round">Initial investment cost</button>
+            </div>
+        </div>
+
+    {% else %}
+        <li>The <span class="warning">payoff</span> will be released
+            and the <span class="success">final investment cost</span>
+            will be automatically charged. Notice that, unlike in the last Part, you now
+            have to make a decision about whether to pay the final investment cost, which will happen after you learn
+            the payoffs. This is the amount that will be added to your show up fee and earnings in the other part of the
+            experiment:
+        </li>
+        <div class="panel panel-default">
+            <div class="panel-body pagination-centered text-center">
+                <span class="ariph">-</span>
+                <button type="button" class="btn btn-info btn-lg round">Initial investment cost</button>
+                <span class="ariph">+</span>
+                <button type="button" class="btn btn-warning btn-lg round">payoff</button>
+                <span class="ariph">-</span>
+                <button type="button" class="btn btn-success btn-lg round">Final investment cost</button>
             </div>
         </div>
     {% endif %}
+    <li>If you choose <strong>not</strong> to pay
+        the <span class="info">initial investment cost</span>{% if player.treatment == 'T2' %}
+            and the <span class="success">final investment cost</span>{% endif %},
+        the net earnings for that round will be zero.
+    </li>
+</ul>
+
+
+
+
+
+
+

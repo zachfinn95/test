@@ -1,48 +1,55 @@
-
 {% load staticfiles otree_tags %}
 
 
 <div class='well'>
 
 
-  <div class="panel panel-default">
-    <!-- Default panel contents -->
-    <div class="panel-heading"><h3>Contract elements:</h3></div>
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading"><h3>Contract elements:</h3></div>
 
 
-    <table class="table table-hover table-striped">
-      <tbody>
-    <tr>
-      <td>Initial investment cost:</td>
-      <td><span class="badge">{{initial_cost|default:Constants.initial_cost}}</td>
-    </tr>
-    <tr>
-      <th colspan=2>Investment payoff:</th>
+        <table class="table table-hover table-striped">
+            <tbody>
+            <tr>
+                <td>Initial investment cost:</td>
+                <td><span class="badge">{{ initial_cost|default:Constants.initial_cost }}</td>
+            </tr>
+            <tr>
+                <th colspan=2>Investment payoff:</th>
 
-    </tr>
-    <tr  class='random {% if  not prob_realized %} success {% endif %}'>
-      <td class='{% if highlighted_low %} invalid' {% endif %}' >Low: <span class="badge">{{low_payoff|default:player.low_payoff}}</span></td>
-      <td class='{% if highlighted_low %} invalid {% endif %}probs'>Chances the Payoff is Low: <span class="badge">{{p}}%</span></td>
-    </tr>
-    <tr  class='random {% if not prob_realized  %} success {% endif %}'>
-      <td class='{% if highlighted_high %} invalid' {% endif %}' >High: <span class="badge">{{high_payoff|default:player.high_payoff}}</span></td>
-      <td class='{% if highlighted_high %} invalid {% endif %} probs'>Chances the Payoff is High: <span class="badge">{{p_1}}%</span></td>
-    </tr>
-    <tr>
-      <td colspan=2 class='bg-white'>    <div class="media">
-                <div class="media-left">
-                    <img class="media-object" data-src="holder.js/64x64" alt="jar_pic" style="width: auto; height: 100px;" src="{% static 'img/jar.png' %}" data-holder-rendered="true" data-pin-nopin="true">
-                </div>
-                <div class="media-body">The chances you get a low payoff are the
-                   same as the chances you draw a red ball from this bin. <br>
-                   While the chances you get a high payoff are the same as
-                   the chances you draw a blue ball from this bin.</td>
+            </tr>
+            <tr class='random {% if  not prob_realized %}  {% endif %}'>
+                <td class='{% if highlighted_low %} invalid' {% endif %}
+                ' >Low: <span class="badge">{{ low_payoff|default:player.low_payoff }}</span></td>
+                <td class='{% if highlighted_low %} invalid {% endif %}probs'>Chances the Payoff is Low: <span
+                        class="badge">{{ p }}%</span></td>
+            </tr>
+            <tr class='random {% if not prob_realized %}  {% endif %}'>
+                <td class='{% if highlighted_high %} invalid' {% endif %}
+                ' >High: <span class="badge">{{ high_payoff|default:player.high_payoff }}</span></td>
+                <td class='{% if highlighted_high %} invalid {% endif %} probs'>Chances the Payoff is High: <span
+                        class="badge">{{ p_1 }}%</span></td>
+            </tr>
+            <tr>
+                <td colspan=2 class='bg-white'>
+                    <div class="media">
+                        <div class="media-left">
+                            <img class="media-object" data-src="holder.js/64x64" alt="jar_pic"
+                                 style="width: auto; height: 100px;" src="{% static 'img/jar.png' %}"
+                                 data-holder-rendered="true" data-pin-nopin="true">
+                        </div>
+                        <div class="media-body">The chances you get a low payoff are the
+                            same as the chances you draw a red ball from this bin. <br>
+                            While the chances you get a high payoff are the same as
+                            the chances you draw a blue ball from this bin.
+                </td>
 
-    </tr>
-<tr>
+            </tr>
+            <tr>
 
 
-      <td ><span data-toggle="tooltip" data-placement="right" data-html='true' title="<h5>
+                <td><span data-toggle="tooltip" data-placement="right" data-html='true' title="<h5>
         {% if player.treatment == 'T0' %}
         Will be automatically paid only if the realized payoff is larger than this amount.
         {% elif player.treatment == 'T1' %}
@@ -50,76 +57,101 @@
         {% else %}
         Will be automatically paid whenever you chose to make the initial investment.
         {% endif %}
-      </h5>">Final investment cost <span class="glyphicon glyphicon-info-sign blue" aria-hidden="true"></span></span>:</td>
+      </h5>">Final investment cost <span class="glyphicon glyphicon-info-sign blue" aria-hidden="true"></span></span>:
+                </td>
 
-      <td><span class="badge">{{final_cost|default:Constants.final_cost}}</td>
-    </tr>
-    </tbody>
-  </table>
-  </div>
-{% if prob_realized and modal_shown %}
-  <div class="modal fade" tabindex="-1" role="dialog" id='myModal'>
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title">Investment payoff</h4>
-        </div>
-        <div class="modal-body">
-          <p>The random number generator has determined that the payoff for this investment is <b>${{player.investment_payoff}}</b></p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-{% endif %}
+                <td><span class="badge">{{ final_cost|default:Constants.final_cost }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    {% if prob_realized and modal_shown %}
+        <div class="modal fade" tabindex="-1" role="dialog" id='myModal'>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Investment payoff</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>The random number generator has determined that the payoff for this investment is
+                            <b>${{ player.investment_payoff }}</b></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    {% endif %}
 
 </div>
 <script>
-  $(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-  })
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
 </script>
 {% if prob_realized %}
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-  <script>
-  $('#myModal').modal('toggle');
-  $(document).ready(function(){
-  var probs = $('.probs');
-   probs.html("");
-  });
-  </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+            crossorigin="anonymous"></script>
+    <script>
+        $('#myModal').modal('toggle');
+        $(document).ready(function () {
+            var probs = $('.probs');
+            probs.html("");
+        });
+    </script>
 
-  <style>
-  @-webkit-keyframes invalid {
-    from { background-color: #dff0d8; }
-    to { background-color: inherit; }
-  }
-  @-moz-keyframes invalid {
-    from { background-color: #dff0d8; }
-    to { background-color: inherit; }
-  }
-  @-o-keyframes invalid {
-    from { background-color: #dff0d8; }
-    to { background-color: inherit; }
-  }
-  @keyframes invalid {
-    from { background-color: #dff0d8;}
-    to { background-color: inherit; }
-  }
-  .invalid {
-    -webkit-animation: invalid 1s infinite; /* Safari 4+ */
-    -moz-animation:    invalid 1s infinite; /* Fx 5+ */
-    -o-animation:      invalid 1s infinite; /* Opera 12+ */
-    animation:         invalid 1s infinite; /* IE 10+ */
-  }
+    <style>
+        @-webkit-keyframes invalid {
+            from {
+                background-color: #dff0d8;
+            }
+            to {
+                background-color: inherit;
+            }
+        }
 
-  td {
-      /*padding: 1em;*/
-  }
+        @-moz-keyframes invalid {
+            from {
+                background-color: #dff0d8;
+            }
+            to {
+                background-color: inherit;
+            }
+        }
 
-  </style>
+        @-o-keyframes invalid {
+            from {
+                background-color: #dff0d8;
+            }
+            to {
+                background-color: inherit;
+            }
+        }
+
+        @keyframes invalid {
+            from {
+                background-color: #dff0d8;
+            }
+            to {
+                background-color: inherit;
+            }
+        }
+
+        .invalid {
+            -webkit-animation: invalid 1s infinite; /* Safari 4+ */
+            -moz-animation: invalid 1s infinite; /* Fx 5+ */
+            -o-animation: invalid 1s infinite; /* Opera 12+ */
+            animation: invalid 1s infinite; /* IE 10+ */
+        }
+
+        td {
+            /*padding: 1em;*/
+        }
+
+    </style>
 {% endif %}

@@ -1,24 +1,20 @@
 <div class="well-lg well">
 
-  <label class="control-label"
-                        for="id_first_decision">Do you want to pay an initial investment cost of ${{Constants.q_parameters.initial_cost}}
-                        {% if player.treatment == 'T0' %} with the final
- investment cost determined based on what value payoff
- is drawn?
- {% elif player.treatment == 'T1' %}
-  to take this contract?
- {% else %}
- and a final investment cost of ${{Constants.q_parameters.final_cost}} to release the randomly determined payoff?
- {% endif %}
+    <label class="control-label"
+           for="id_first_decision">Do you want to pay an initial investment cost of
+        ${{ Constants.q_parameters.initial_cost }}{% if player.treatment == 'T2' %}and a final investment cost of $
+            {{ Constants.q_parameters.final_cost }}{% endif %}?
 
-                 </label>
+    </label>
 
-                 <div class="controls  field-first_decision">
-                     <ul>
-<li><label for="id_first_decision_1"><input type="radio" disabled id="id_first_decision_1" value="True"  name="first_decision" required> Yes</label></li>
+    <div class="controls  field-first_decision">
+        <ul>
+            <li><label for="id_first_decision_1"><input type="radio" disabled id="id_first_decision_1" value="True"
+                                                        name="first_decision" required> Yes</label></li>
 
-<li><label for="id_first_decision_2"><input type="radio" disabled id="id_first_decision_2" value="False"  name="first_decision" required> No</label></li>
-</ul>
+            <li><label for="id_first_decision_2"><input type="radio" disabled id="id_first_decision_2" value="False"
+                                                        name="first_decision" required> No</label></li>
+        </ul>
 
-</div>
+    </div>
 </div>

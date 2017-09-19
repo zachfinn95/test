@@ -24,7 +24,7 @@ class Constants(BaseConstants):
     first_half = 9
     second_half = first_half + 1
     assert first_half <= num_rounds, "SOMETHING WRONG WITH NUMBER OF ROUNDS!"
-    p = 0.3
+    p = 0.7 # probability of low payoff
     initial_cost = 9
     final_cost = 15
     first_decision_labels = {

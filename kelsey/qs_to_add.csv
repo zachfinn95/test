@@ -1,6 +1,6 @@
 number,qname,verbose,option1,option2,correct,treatment
 1,q3_T0,What are your earnings for the round in the previous example if the payoff is ${hpayoff} and you chose to pay the initial investment cost (${initial})?,16,12,16,T0
-2,q2_T0,What are your earnings for the round in the previous example if the payoff is ${lpayoff} and you choose to pay the initial investment cost (${initial})?,-16,-9,-9,T0
+2,q2_T0,What are your earnings for the round in the previous example if the payoff is ${lpayoff} and you choose to pay the initial investment cost (${initial})?,-9,-16,-16,T0
 3,q1_T0,What are your earnings for the round in the previous example if you choose not to pay the initial investment cost (${initial})?,-6,0,0,T0
 4,q1_T1,Would you be able to release the payoff by paying the final investment cost if you do not pay the initial investment cost?,No,Yes,No,T1
 5,q2_T1,"What would have been your earnings for the round in the previous example if the payoff were {hpayoff}, and you had chosen to pay both the initial investment cost (${initial}) and the final investment cost (${final})?",6,16,16,T1

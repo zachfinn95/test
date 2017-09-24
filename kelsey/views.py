@@ -180,7 +180,7 @@ class Survey(Page):
 page_sequence = [
     # Consent,
     # Instr1,
-    # Instr2,
+    Instr2,
     # Instr3,
     # Example,
     # Q,
@@ -189,5 +189,5 @@ page_sequence = [
     # InitialInvestment,
     # FinalInvestment,
     # Results,
-    Survey,
+    # Survey,
 ]

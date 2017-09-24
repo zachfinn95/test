@@ -178,16 +178,16 @@ class Survey(Page):
 
 
 page_sequence = [
-    # Consent,
-    # Instr1,
+    Consent,
+    Instr1,
     Instr2,
-    # Instr3,
-    # Example,
-    # Q,
-    # QResults,
-    # Separ,
-    # InitialInvestment,
-    # FinalInvestment,
-    # Results,
-    # Survey,
+    Instr3,
+    Example,
+    Q,
+    QResults,
+    Separ,
+    InitialInvestment,
+    FinalInvestment,
+    Results,
+    Survey,
 ]
